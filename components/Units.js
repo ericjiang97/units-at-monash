@@ -1,7 +1,7 @@
 import React from 'react';
 import Expo from 'expo';
-import { StyleSheet, View, Text } from 'react-native';
-import { List, ListItem,Spinner } from 'native-base';
+import { ScrollView , StyleSheet, View, Text } from 'react-native';
+import { List, ListItem, Spinner } from 'native-base';
 import axios from "axios";
 
 export default class Units extends React.Component {
@@ -30,21 +30,23 @@ export default class Units extends React.Component {
 
   render() {
     return (
-        <List>
-            {this.state.fetchReady ? 
-                this.state.data.map((item) => {
-                   return(<ListItem key={item.unitCode}>
-                        <Text>{item.unitCode + " " + item.unitName}</Text>
-                    </ListItem>)
-                })
-                :
-                <ListItem>
-                    <Spinner color='blue' />
-                </ListItem>
-            }
+        <ScrollView>
+            <List>
+                {this.state.fetchReady ? 
+                    this.state.data.map((item) => {
+                    return(<ListItem key={item.unitCode}>
+                            <Text>{item.unitCode + " - " + item.unitName}</Text>
+                        </ListItem>)
+                    })
+                    :
+                    <ListItem>
+                        <Spinner color='blue' />
+                    </ListItem>
+                }
 
 
-        </List>
+            </List>
+        </ScrollView >
     );
   }
 }
