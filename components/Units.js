@@ -5,7 +5,7 @@ import { List, ListItem, Text,Spinner } from 'native-base';
 
 export default class Units extends React.Component {
   constructor(){
-    super();
+    super(props);
     this.state = {
       fetchReady: false, 
       data: []
@@ -30,7 +30,7 @@ export default class Units extends React.Component {
   render() {
     return (
         <List>
-            {this.fetchReady ? this.state.data.map((item) => {
+            {this.state.fetchReady ? this.state.data.map((item) => {
                         <ListItem>
                             <Text>{item.unitName}</Text>
                         </ListItem>
