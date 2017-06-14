@@ -1,13 +1,15 @@
 import React from 'react';
 import Expo from 'expo';
+import Footer from "./components/Footer";
+import Units from "./components/Units"
 import { StyleSheet, View } from 'react-native';
-import { Container, Content, ListItem, Text, CheckBox, Header } from 'native-base';
+import { Container, Content, ListItem, Text, CheckBox, Header, Left, Button, Icon, Title, Body, Right } from 'native-base';
 
 export default class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      isReady: false,
+      isReady: false
     };
   }
 
@@ -27,21 +29,19 @@ export default class App extends React.Component {
 
     return (
       <View>
-        <Container>
-            <Header>
-                <Body>
-                    <Title>Header</Title>
-                </Body>
-                <Right>
-                    <Button transparent>
-                        <Icon name='menu' />
-                    </Button>
-                </Right>
-            </Header>
-        </Container>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+          <Header>
+              <Left>
+                  <Button transparent>
+                      <Icon name='menu' />
+                  </Button>
+              </Left>
+              <Body>
+                  <Title>Find a Unit</Title>
+              </Body>
+              <Right />
+          </Header>
+            <Units />
+          <Footer />
       </View>
     );
   }
