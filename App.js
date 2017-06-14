@@ -40,8 +40,7 @@ export default class App extends React.Component {
               </Body>
               <Right />
           </Header>
-            <Units />
-          <Footer />
+          <Units />
       </View>
     );
   }

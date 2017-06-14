@@ -1,7 +1,8 @@
 import React from 'react';
 import Expo from 'expo';
+import Fuzzy from "./utils/fuzzy.js"
 import { ScrollView , StyleSheet, View, Text } from 'react-native';
-import { List, ListItem, Spinner } from 'native-base';
+import { List, ListItem, Spinner, Item, Input } from 'native-base';
 import axios from "axios";
 
 export default class Units extends React.Component {
@@ -10,7 +11,8 @@ export default class Units extends React.Component {
     this.state = {
       fetchReady: false, 
       data: [],
-      error: false
+      results: [],
+      search: ""
     };
   }
 
@@ -28,20 +30,35 @@ export default class Units extends React.Component {
     })
   }
 
+  search(text){
+    this.setState({
+        results: Fuzzy.search(text, this.state.data, 20, ["unitCode", "unitName"], 0.5 )
+    })
+  }
+
   render() {
     return (
         <ScrollView>
             <List>
-                {this.state.fetchReady ? 
-                    this.state.data.map((item) => {
-                    return(<ListItem key={item.unitCode}>
-                            <Text>{item.unitCode + " - " + item.unitName}</Text>
-                        </ListItem>)
-                    })
+                {this.state.fetchReady ?
+                    <ListItem>
+                        <Item regular>
+                            <Input placeholder='Regular Textbox' onChangeText={this.search.bind(this)}/>
+                        </Item>
+                    </ListItem>
                     :
                     <ListItem>
+                        <Text> Loading... </Text>
                         <Spinner color='blue' />
                     </ListItem>
+                }
+                {
+                    this.state.results &&
+                    this.state.results.map((item) => {
+                        return <ListItem key={item.unitCode}>
+                                    <Text>{item.unitCode + " - " + item.unitName}</Text>
+                            </ListItem>  
+                    })
                 }
 
 
