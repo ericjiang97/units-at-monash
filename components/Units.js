@@ -1,7 +1,7 @@
 import React from 'react';
 import Expo from 'expo';
-import { StyleSheet, View } from 'react-native';
-import { List, ListItem, Text,Spinner } from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
+import { List, ListItem,Spinner } from 'native-base';
 import axios from "axios";
 
 export default class Units extends React.Component {
@@ -16,11 +16,12 @@ export default class Units extends React.Component {
 
   componentDidMount() {
     axios.get('https://monplan-api-dev.appspot.com/basic/units')
-    .then((response) => 
-        this.setState({
-            data: response.data,
-            fetchReady: true
-        })
+    .then((response) => {
+            this.setState({
+                data: response.data,
+                fetchReady: true
+            })
+        }
     )
     .catch(err => {
         throw err;
@@ -30,25 +31,17 @@ export default class Units extends React.Component {
   render() {
     return (
         <List>
-            {this.state.fetchReady && 
+            {this.state.fetchReady ? 
                 this.state.data.map((item) => {
-                    <ListItem key={item.unitCode}>
-                        <Text>{item.unitName}</Text>
-                    </ListItem>
+                   return(<ListItem key={item.unitCode}>
+                        <Text>{item.unitCode + " " + item.unitName}</Text>
+                    </ListItem>)
                 })
+                :
+                <ListItem>
+                    <Spinner color='blue' />
+                </ListItem>
             }
-            {!this.state.fetchReady & !this.state.error &&
-                        <ListItem>
-                            <Spinner color='blue' />
-                        </ListItem>
-            }
-            {(this.state.fetchReady &  this.state.error) &&
-                        <ListItem>
-                            <Text>An Error has Occured</Text>
-                        </ListItem>
-            
-            
-            } 
 
 
         </List>
