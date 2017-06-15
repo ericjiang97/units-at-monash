@@ -1,6 +1,6 @@
 # Monash Unit Handbook Viewer (Units@Monash)
 
-This project was started for me to explore [react-native](www.reactnative.com). Whilst building something that might be useful the same time.
+This project was started for me to explore [react-native](https://facebook.github.io/react-native/). Whilst building something that might be useful the same time.
 
 This was built on top of the [monPlan](https://monashunitplanner.github.io) API, where we can fetch unit information from the handbook and more it much more easier to use.
 

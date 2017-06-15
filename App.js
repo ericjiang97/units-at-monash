@@ -30,11 +30,6 @@ export default class App extends React.Component {
     return (
       <View>
           <Header>
-              <Left>
-                  <Button transparent>
-                      <Icon name='menu' />
-                  </Button>
-              </Left>
               <Body>
                   <Title>Units@Monash</Title>
               </Body>
