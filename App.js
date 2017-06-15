@@ -36,7 +36,7 @@ export default class App extends React.Component {
                   </Button>
               </Left>
               <Body>
-                  <Title>Find a Unit</Title>
+                  <Title>Units@Monash</Title>
               </Body>
               <Right />
           </Header>

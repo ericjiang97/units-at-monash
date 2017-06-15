@@ -4,17 +4,17 @@ import Fuzzy from "./utils/fuzzy.js"
 import { ScrollView , StyleSheet, View, Text } from 'react-native';
 import { List, ListItem, Spinner, Item, Input } from 'native-base';
 import axios from "axios";
-
+import UnitModal from "./UnitModal"
 export default class Units extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      fetchReady: false, 
-      data: [],
-      results: [],
-      search: ""
-    };
-  }
+    constructor(props){
+        super(props);
+        this.state = {
+        fetchReady: false, 
+        data: [],
+        results: [],
+        search: ""
+        };
+    }
 
   componentDidMount() {
     axios.get('https://monplan-api-dev.appspot.com/basic/units')
@@ -43,21 +43,19 @@ export default class Units extends React.Component {
                 {this.state.fetchReady ?
                     <ListItem>
                         <Item regular>
-                            <Input placeholder='Regular Textbox' onChangeText={this.search.bind(this)}/>
+                            <Input placeholder='Search for a unit...' onChangeText={this.search.bind(this)}/>
                         </Item>
                     </ListItem>
                     :
                     <ListItem>
-                        <Text> Loading... </Text>
+                        <Text> Fetching Summary of Every Unit... </Text>
                         <Spinner color='blue' />
                     </ListItem>
                 }
                 {
                     this.state.results &&
                     this.state.results.map((item) => {
-                        return <ListItem key={item.unitCode}>
-                                    <Text>{item.unitCode + " - " + item.unitName}</Text>
-                            </ListItem>  
+                        return <ListItem key={item.unitCode}><UnitModal unitCode={item.unitCode} unitName={item.unitName}/></ListItem>
                     })
                 }
 
