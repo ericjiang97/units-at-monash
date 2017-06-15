@@ -11,9 +11,9 @@ This was built on top of the [monPlan](https://monashunitplanner.github.io) API,
 4. Build and Open the Project
 
 # Screenshots
-![screen1](/images/screenshot1.png)
-![screen2](/images/screenshot2.png)
-![screen3](/images/screenshot3.png)
+<img src="/images/screenshot1.png" width="30%"/>
+<img src="/images/screenshot2.png" width="30%"/>
+<img src="/images/screenshot3.png" width="30%"/>
 
 # LICENSE
 This project is licensed under the `MIT` license. 
