@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, TouchableHighlight, View } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, ScrollView } from 'react-native';
 import { Button, Card, CardItem, Body, Spinner, Title, Icon } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import axios from "axios";
@@ -47,13 +47,31 @@ export default class UnitModal extends React.Component {
                             <CardItem header>
                                 <Text>{this.props.unitCode + " - " + this.props.unitName}</Text>
                             </CardItem>
-                            <Body>
+                            <CardItem>
+                                <Body>
                                 {this.state.fetchReady ?
                                 <Grid>
                                     <Row>
                                         <Col>
                                             <Icon ios="ios-school" android="md-school" />
                                         </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Icon ios="ios-heart" android="md-heart" />
+                                        </Col>
+                                        <Col>
+                                        <Text>{this.state.data.enjoyScore}</Text>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Text>Prerequisites: {this.state.data.preqs}</Text>
+                                    </Row>
+                                    <Row>
+                                        <Text>Corequisites: {this.state.data.coreqs}</Text>
+                                    </Row>
+                                    <Row>
+                                        <Text>Prohibitions: {this.state.data.proh}</Text>
                                     </Row>
                                     <Row>
                                         <Text>{this.state.data.description}</Text>
@@ -66,11 +84,12 @@ export default class UnitModal extends React.Component {
                                 </CardItem>
                                 }
                             </Body>
+                            </CardItem>
                             
                             <Button primary onPress={() => {
                                     this.setModalVisible(!this.state.modalOpen)
                                 }}>
-                                <Text>Hide Modal</Text>
+                                <Text>Close</Text>
                             </Button>
                         </Card>
                 </ScrollView>    
